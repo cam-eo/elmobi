@@ -1,5 +1,7 @@
 <script>
     import wheel from "../assets/icons/wheel.svg";
+    import { headerState } from "../store.js";
+
     const menuItems = [
         { name: "one", id: 1 },
         { name: "two", id: 2 },
@@ -7,7 +9,11 @@
         { name: "four", id: 4 },
     ];
 
-    let headerState = menuItems[0];
+    let headerStateValue;
+
+    headerState.subscribe((value) => {
+        headerStateValue = value;
+    });
 </script>
 
 <div class="header">
@@ -15,9 +21,11 @@
         <div
             class="headerItem"
             on:click={() => {
-                headerState = value;
+                headerState.set(value);
             }}
-            style="--opacity: {`${value.id === headerState.id ? 1 : 0.5}`};"
+            style="--opacity: {`${
+                value.id === headerStateValue.id ? 1 : 0.5
+            }`};"
         >
             <span class="headerText">{value.name}</span>
             <img src={wheel} class="wheel" alt="Wheel" />
@@ -28,7 +36,9 @@
                         class="wheel_subtle"
                         alt="Wheel"
                         style="--transform: {`${
-                            value.id === headerState.id ? (index + 1) * 20 : 0
+                            value.id === headerStateValue.id
+                                ? (index + 1) * 20
+                                : 0
                         }px`}; --zIndex: {-(index + 1)}"
                     />
                 {/each}
@@ -57,6 +67,8 @@
         align-items: center;
         justify-content: space-between;
         width: 700px;
+        margin-bottom: 30px;
+        margin-top: 30px;
     }
 
     .headerItem {
