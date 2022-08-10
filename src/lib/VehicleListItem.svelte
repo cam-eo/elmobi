@@ -1,6 +1,4 @@
 <script>
-    import teslaMX from "../assets/images/tesla_modelx.jpg";
-    import teslaLogo from "../assets/logos/tesla_logo.svg";
 
     export /**
      * @type {{ brand: string; priceRange: string; range: string; imageUrl: string; brandLogoImageUrl: string; }}
@@ -9,13 +7,13 @@
 </script>
 
 <div class="vehicleListingItem">
-    <img class="vehicleListingItem_image" src={teslaMX} alt="Telsa Model X" />
+    <img class="vehicleListingItem_image" src={vehicle.imageUrl} alt="Telsa Model X" />
     <div class="vehicleListingItem_info">
         <h2>{vehicle.brand}</h2>
         <span>{vehicle.priceRange}</span>
         <span>{vehicle.range}</span>
     </div>
-    <img class="vehicleListingItem_logo" src={teslaLogo} alt="Telsa Logo" />
+    <img class="vehicleListingItem_logo" src={vehicle.brandLogoImageUrl} alt="Telsa Logo" />
 </div>
 
 <style>
